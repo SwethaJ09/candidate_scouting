@@ -33,7 +33,7 @@ def extract_features(file_path):
     # Replace with actual MFCC feature extraction
     return np.random.rand(40)
 
-model_path = r'C:\Users\Swetha\Desktop\fyp\random_forest_emotion_polarity_model.pkl'
+model_path = './random_forest_emotion_polarity_model.pkl'
 emotion_model = joblib.load(model_path)
 
 # Helper functions
