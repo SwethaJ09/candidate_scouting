@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Round - Rank List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .most-eligible {
+            color: #4caf50; /* Green color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HR Round - Eligible Candidates</h1>
+        <p>Below is the rank list of eligible candidates based on their total score:</p>
+        
+        <!-- Display Bar Chart -->
+        <img src="data:image/png;base64,{{ bar_chart_data }}" alt="Rank List Bar Chart">
+
+        <!-- Display Radar Chart -->
+        <img src="data:image/png;base64,{{ radar_chart_data }}" alt="Radar Chart for Eligible Candidates">
+
+        <!-- Display Most Eligible Candidate -->
+        <div class="result">
+            <p>Based on the total scores, <span class="most-eligible">{{ most_eligible['name'] }}</span> is the most eligible candidate!</p>
+        </div>
+    </div>
+</body>
+</html>

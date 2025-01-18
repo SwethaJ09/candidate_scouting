@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Reports</title>
+    <style>
+        /* Set a violet gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0); /* Violet gradient */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main container styling */
+        h1 {
+            text-align: center;
+            padding: 20px;
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the unordered list of reports */
+        ul {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            list-style-type: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        li {
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Heading styling inside each candidate report */
+        li b {
+            font-size: 1.1em;
+        }
+
+        /* Styling for the individual report details */
+        .metrics {
+            margin-top: 10px;
+            color: #ffeb3b; /* Yellow for emphasis */
+        }
+
+        .entities {
+            margin-top: 10px;
+        }
+
+        /* Styling for the graph image */
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            border: 2px solid #fff;
+        }
+
+        /* Add spacing between each report */
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Styling for the 'Candidate X' label */
+        .candidate-number {
+            font-size: 1.2em;
+            color: #ff9800; /* Orange color for candidate number */
+            font-weight: bold;
+        }
+
+        /* Styling for the metrics in a list format */
+        .metrics span {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        /* Eligibility Status */
+        .eligibility {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .eligible {
+            color: #4caf50; /* Green color for eligible */
+        }
+
+        .not-eligible {
+            color: #f44336; /* Red color for not eligible */
+        }
+
+        /* Button for HR Round */
+        .hr-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #4caf50; /* Green */
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .hr-btn:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Reports for Skill: {{ skill }}</h1>
+
+    <h3>All Candidate Reports</h3>
+    <ul>
+    {% for report in reports %}
+        <li>
+            <div class="candidate-number">Candidate {{ loop.index }}:</div>
+            <b>Duration:</b> {{ report.duration }} seconds <br>
+            <b>Pause Duration:</b> {{ report.pause_duration }} seconds <br>
+            <b>Emotion:</b> {{ report.emotion }} <br>
+            <div class="entities">
+                <b>Entities:</b> <br>
+                <b>Companies:</b> {{ report.entities.companies }}<br>
+                <b>Skills:</b> {{ report.entities.skills }}<br>
+            </div>
+            <div class="metrics">
+                <b>Metrics:</b> 
+                <span>Listenability: {{ report.listenability_score }}%</span>
+                <span>Vocabulary: {{ report.vocab_rating }}%</span>
+                <span>Clarity: {{ report.clarity_score }}%</span>
+                <span>Speaking Pace: {{ report.speaking_pace }}</span>
+            </div>
+            <div class="eligibility">
+                <b>Eligibility Status:</b> 
+                <span class="{{ 'eligible' if report.eligibility == 'Eligible' else 'not-eligible' }}">
+                    {{ report.eligibility }}
+                </span>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <!-- Section for Eligible Candidates -->
+    <h3>Eligible Candidate Reports</h3>
+    <ul>
+    {% for report in filtered %}
+        <li>
+            <div class="candidate-number">Candidate {{ loop.index }}:</div>
+            <b>Duration:</b> {{ report.duration }} seconds <br>
+            <b>Pause Duration:</b> {{ report.pause_duration }} seconds <br>
+            <b>Emotion:</b> {{ report.emotion }} <br>
+            <div class="entities">
+                <b>Entities:</b> <br>
+                <b>Companies:</b> {{ report.entities.companies }}<br>
+                <b>Skills:</b> {{ report.entities.skills }}<br>
+            </div>
+            <div class="metrics">
+                <b>Metrics:</b> 
+                <span>Listenability: {{ report.listenability_score }}%</span>
+                <span>Vocabulary: {{ report.vocab_rating }}%</span>
+                <span>Clarity: {{ report.clarity_score }}%</span>
+                <span>Speaking Pace: {{ report.speaking_pace }}</span>
+            </div>
+            <div class="eligibility">
+                <b>Eligibility Status:</b> 
+                <span class="{{ 'eligible' if report.eligibility == 'Eligible' else 'not-eligible' }}">
+                    {{ report.eligibility }}
+                </span>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <!-- Button for HR Round -->
+    <a href="{{ url_for('hr_round') }}" class="hr-btn">Proceed to HR Round</a>
+
+    <!-- Graph for eligible candidates -->
+    <h3>Listenability Scores for Eligible Candidates</h3>
+    <img src="{{ url_for('static', filename='graph.png') }}" alt="Graph">
+</body>
+</html>

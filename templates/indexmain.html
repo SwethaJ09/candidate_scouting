@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Speech</title>
+</head>
+<body>
+    <h1>Virtual Speech</h1>
+    <p>Your one-stop solution for instant feedback on interviews! 🎙️</p>
+    
+    <form method="POST" enctype="multipart/form-data">
+
+
+        <label for="email">Enter your email to receive the report:</label>
+        <br><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <br><br>
+
+        <label for="query">Enter your question about the interview:</label>
+        <br><br>
+        <input type="text" id="query" name="query" placeholder="Ask a question...">
+        <br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if transcription %}
+    <h2>Transcription</h2>
+    <p>{{ transcription }}</p>
+
+    <h2>Feedback</h2>
+    <audio controls>
+        <source src="{{ feedback_audio }}" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <h2>Personalized Query Feedback</h2>
+    <p>{{ personalized_feedback }}</p>
+
+    <h2>Analysis</h2>
+    <img src="{{ url_for('static', filename='pie_chart.png') }}" alt="Pie Chart">
+    
+    <h2>Emotion Analysis</h2>
+    <p><strong>Emotion:</strong> {{ predicted_emotion }}</p>
+
+    <h2>Total Duration</h2>
+    <p><strong>Total Duration:</strong> {{ total_duration }}</p>
+
+    <h2>Pause Duration</h2>
+    <p><strong>Pause Duration:</strong> {{ pause_duration }}</p>
+    
+    <h2>Vocabulary Rating</h2>
+    <p><strong>Vocabulary Rating:</strong> {{ vocab_rating }}</p>
+
+    <h2>Listenability Score </h2>
+    <p><strong>Listenability Score:</strong> {{ listenability_score }}</p>
+
+    <h2>Clarity Score</h2>
+    <p><strong>Clarity Score</strong> {{ clarity_score }}</p>
+
+    <h2>Speaking Pace</h2>
+    <p><strong>Speaking Pace:</strong> {{ speaking_pace }}</p>
+
+
+    <h2>Polarity Score</h2>
+    <p><strong>Polarity:</strong> {{ polarity_score }}</p>
+
+    {% endif %}
+</body>
+</html>

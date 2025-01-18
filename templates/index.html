@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Speech - Interview Feedback</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0); /* Purple gradient */
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Main header style */
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 0.5em;
+            color: #fff;
+        }
+
+        /* Description text */
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ffeb3b;
+            margin-bottom: 2em;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Form labels and inputs styling */
+        label {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="file"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Submit button styling */
+        button {
+            padding: 15px 30px;
+            background-color: #ff9800;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #f57c00;
+        }
+
+        /* Footer text styling */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1em;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Virtual Speech</h1>
+    <p>Your one-stop solution for instant feedback on interviews! 🎙️</p>
+    <h2>Candidate Scouting from Group Discussion</h2>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <form method="post" action="/process" enctype="multipart/form-data">
+            <label for="skill">Enter Skill:</label>
+            <input type="text" id="skill" name="skill" required>
+
+            <label for="files">Upload Audio Files (up to 10):</label>
+            <input type="file" id="files" name="files" multiple accept=".wav" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer text -->
+
+</body>
+</html>
