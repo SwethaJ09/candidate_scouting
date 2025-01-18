@@ -1,0 +1,8 @@
+Flask
+librosa
+spacy
+numpy
+matplotlib
+Werkzeug
+joblib
+SpeechRecognition
