@@ -6,3 +6,4 @@ matplotlib
 Werkzeug
 joblib
 SpeechRecognition
+gunicorn
